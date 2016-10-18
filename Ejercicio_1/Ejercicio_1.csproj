@@ -43,7 +43,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="CapaAplicacion.cs" />
     <Compile Include="CapaAplicationException.cs" />
+    <Compile Include="CapaControlador.cs" />
+    <Compile Include="CapaDominio.cs" />
+    <Compile Include="CapaPersistencia.cs" />
+    <Compile Include="CapaVista.cs" />
     <Compile Include="ErrorPuntualException.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
