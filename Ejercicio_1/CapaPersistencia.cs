@@ -8,5 +8,16 @@ namespace Ejercicio_1
 {
     class CapaPersistencia
     {
+        private DateTime iFechayHora;
+        public CapaPersistencia()
+        {
+            this.iFechayHora = DateTime.Now;
+            throw new ErrorPuntualException();
+            
+        }
+        public void Ejecutar()
+        {
+
+        }
     }
 }

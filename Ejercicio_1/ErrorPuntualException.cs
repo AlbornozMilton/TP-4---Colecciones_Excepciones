@@ -8,10 +8,15 @@ namespace Ejercicio_1
 {
     class ErrorPuntualException:ApplicationException
     {
-        try{}
-        catch (IndexOutOfRangeException)
-            {}
-           
+        public static void Main(string[] args)
+        {
+            try
+            { }
+            catch
+            { }
+            finally
+            { }
+        }
 
     }
 }

@@ -8,5 +8,14 @@ namespace Ejercicio_1
 {
     class CapaAplicationException:ApplicationException
     {
+        public static void Main(string[] args)
+        {
+            try
+            { }
+            catch
+            { }
+            finally
+            { }
+        }
     }
 }
