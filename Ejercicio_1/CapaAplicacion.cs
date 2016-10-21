@@ -10,8 +10,16 @@ namespace Ejercicio_1
     {
         public void Ejecutar()
         {
-            CapaDominio mCDomininio = new CapaDominio();
-            mCDomininio.Ejecutar();
+            try
+            {
+                CapaDominio mCDomininio = new CapaDominio();
+                mCDomininio.Ejecutar();
+            }
+            catch(ErrorPuntualException)
+            {
+                throw new CapaAplicationException();
+            }
+            
         }
     }
 }

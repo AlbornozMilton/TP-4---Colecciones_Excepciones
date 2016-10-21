@@ -10,8 +10,17 @@ namespace Ejercicio_1
     {
         public void Ejecutar()
         {
-            CapaControlador mCControlador = new CapaControlador();
-            mCControlador.Ejecutar();
+            try
+            {
+                CapaControlador mCControlador = new CapaControlador();
+                mCControlador.Ejecutar();
+            }
+
+            catch (CapaAplicationException mAE)
+            {
+                Console.WriteLine(mAE.Message);
+            }
+            
         }
 
     }

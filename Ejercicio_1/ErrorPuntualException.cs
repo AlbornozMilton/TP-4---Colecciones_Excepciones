@@ -8,15 +8,6 @@ namespace Ejercicio_1
 {
     class ErrorPuntualException:ApplicationException
     {
-        public static void Main(string[] args)
-        {
-            try
-            { }
-            catch
-            { }
-            finally
-            { }
-        }
 
     }
 }

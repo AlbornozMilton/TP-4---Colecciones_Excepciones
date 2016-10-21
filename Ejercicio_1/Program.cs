@@ -10,12 +10,9 @@ namespace Ejercicio_1
     {
         static void Main(string[] args)
         {
-            try
-            { }
-            catch
-            { }
-            finally
-            { }
+            CapaVista mCV = new CapaVista();
+            mCV.Ejecutar();
+            Console.ReadKey();
         }
     }
 }

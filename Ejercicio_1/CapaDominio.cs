@@ -10,16 +10,8 @@ namespace Ejercicio_1
     {
         public void Ejecutar()
         {
-            try
-            {
                 CapaPersistencia mCPersistencia = new CapaPersistencia();
                 mCPersistencia.Ejecutar();
-            }
-
-            catch
-            {
-
-            }
         }
     }
 }
