@@ -18,9 +18,14 @@ namespace Ejercicio_1
 
             catch (CapaAplicationException mAE)
             {
-                Console.WriteLine(mAE.Message);
+                Console.WriteLine("Mensaje de ClaseAplicacion: "+ mAE.Message);
+                Console.WriteLine("Mensaje de ClaseErrorPuntual" + mAE.InnerException.Message);
+                Console.WriteLine("CALLSTACK");
+                Console.WriteLine(mAE.StackTrace);
+                Console.WriteLine(mAE.InnerException);
+ 
             }
-            
+
         }
 
     }

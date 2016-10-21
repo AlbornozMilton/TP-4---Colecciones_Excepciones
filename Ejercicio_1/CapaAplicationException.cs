@@ -6,8 +6,11 @@ using System.Threading.Tasks;
 
 namespace Ejercicio_1
 {
-    class CapaAplicationException:ApplicationException
+    class CapaAplicationException : ApplicationException
     {
-        
+        public CapaAplicationException(ErrorPuntualException pE) : base("Error de Servidor" + " Fecha: " + pE.FechaHora.Date +" Hora: "+pE.FechaHora.TimeOfDay,pE)
+        {
+             
+        }
     }
 }

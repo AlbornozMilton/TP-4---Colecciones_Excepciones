@@ -15,9 +15,9 @@ namespace Ejercicio_1
                 CapaDominio mCDomininio = new CapaDominio();
                 mCDomininio.Ejecutar();
             }
-            catch(ErrorPuntualException)
+            catch(ErrorPuntualException E)
             {
-                throw new CapaAplicationException();
+                throw new CapaAplicationException(E);
             }
             
         }
