@@ -17,7 +17,7 @@ namespace Ejercicio_1
         }
         public void Ejecutar()
         {
-
+          
         }
     }
 }

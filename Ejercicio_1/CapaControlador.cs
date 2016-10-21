@@ -8,5 +8,10 @@ namespace Ejercicio_1
 {
     class CapaControlador
     {
+        public void Ejecutar()
+        {
+            CapaAplicacion mCApp = new CapaAplicacion();
+            mCApp.Ejecutar();
+        }
     }
 }

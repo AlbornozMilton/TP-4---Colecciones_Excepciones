@@ -8,5 +8,10 @@ namespace Ejercicio_1
 {
     class CapaAplicacion
     {
+        public void Ejecutar()
+        {
+            CapaDominio mCDomininio = new CapaDominio();
+            mCDomininio.Ejecutar();
+        }
     }
 }

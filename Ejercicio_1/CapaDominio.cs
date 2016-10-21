@@ -8,5 +8,18 @@ namespace Ejercicio_1
 {
     class CapaDominio
     {
+        public void Ejecutar()
+        {
+            try
+            {
+                CapaPersistencia mCPersistencia = new CapaPersistencia();
+                mCPersistencia.Ejecutar();
+            }
+
+            catch
+            {
+
+            }
+        }
     }
 }

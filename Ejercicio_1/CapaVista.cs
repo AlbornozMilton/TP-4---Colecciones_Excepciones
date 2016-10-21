@@ -8,5 +8,11 @@ namespace Ejercicio_1
 {
     class CapaVista
     {
+        public void Ejecutar()
+        {
+            CapaControlador mCControlador = new CapaControlador();
+            mCControlador.Ejecutar();
+        }
+
     }
 }
