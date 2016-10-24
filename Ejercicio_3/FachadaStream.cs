@@ -11,32 +11,47 @@ namespace Ejercicio_3
     {
         private StreamReader iStreamR;
 
-        public string Ruta(string pRuta)
+        public string BuscarArchivo(string pRuta)
         {
+           // C:\Csharp\Buscado.txt
             try
             {
                 this.iStreamR = new StreamReader(@pRuta);
                 return this.iStreamR.ReadToEnd();
+                    
             }
-            catch (ArgumentException)
+
+            catch (ArgumentNullException E)//el path es null
             {
-                throw new Exception("Ingrese alguna Ruta");
+
+                return "camino Nulo--------"+E.Message;
             }
-            catch (FileNotFoundException)
+
+            catch (ArgumentException E)//el path es cadena vacia
+            {
+                return "camino vacio-------"+E.Message;
+            }
+
+            catch (UnauthorizedAccessException)//al querer abrir una carpeta y que liste sus elementos
+            {
+                //ejemplo: C:\Csharp
+                return "Direccion No Autorizada";
+            }
+
+            catch (FileNotFoundException) //no se pude encontrar el archivo
             {
                 return "Archivo Inexistente";
             }
-            catch (DirectoryNotFoundException)
+
+            catch (DirectoryNotFoundException)//La ruta de acceso especificada no es válida, por ejemplo, está en una unidad no asignada.
             {
                 return "Dirección Invalida";
             }
             
             finally
             {
-                if (this.iStreamR == null) this.iStreamR.Close();
-                else this.iStreamR.Close();
-            }
-            
+                if (this.iStreamR != null) this.iStreamR.Close();
+            }           
         }
     }
 }
