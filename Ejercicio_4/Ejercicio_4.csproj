@@ -46,9 +46,11 @@
     <Compile Include="Cliente.cs" />
     <Compile Include="Cuenta.cs" />
     <Compile Include="CuentasS.cs" />
+    <Compile Include="ExcepcionDeMonto.cs" />
     <Compile Include="FachadaCuentas.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Properties\FachadaStream.cs" />
     <Compile Include="TipoDocumento.cs" />
   </ItemGroup>
   <ItemGroup>

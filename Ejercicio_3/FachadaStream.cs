@@ -24,12 +24,12 @@ namespace Ejercicio_3
             catch (ArgumentNullException E)//el path es null
             {
 
-                return "camino Nulo--------"+E.Message;
+                return "camino Nulo";
             }
 
-            catch (ArgumentException E)//el path es cadena vacia
+            catch (ArgumentException)//el path es cadena vacia
             {
-                return "camino vacio-------"+E.Message;
+                return "camino vacio";
             }
 
             catch (UnauthorizedAccessException)//al querer abrir una carpeta y que liste sus elementos
@@ -40,7 +40,7 @@ namespace Ejercicio_3
 
             catch (FileNotFoundException) //no se pude encontrar el archivo
             {
-                return "Archivo Inexistente";
+                return "Archivo No encontrado";
             }
 
             catch (DirectoryNotFoundException)//La ruta de acceso especificada no es válida, por ejemplo, está en una unidad no asignada.

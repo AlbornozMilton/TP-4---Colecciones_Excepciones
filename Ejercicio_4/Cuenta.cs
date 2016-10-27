@@ -39,14 +39,18 @@ namespace Ejercicio_4
 
         //metodos-------------------------------
 
-        public void AcreditarSaldo(double pSaldo)
+        public void AcreditarSaldo(double pSaldo) //EL SALDO ES NEGATIVO O CERO
         {
+            if (pSaldo < 0) throw new ExcepcionDeMonto("Monto Inválido");
+            
             this.iSaldo += pSaldo;
         }
 
         public bool DebitarSaldo(double pSaldo) //el metodo trabaja con iSaldo negtivo/positivo
         {
-            if (this.iSaldo >= 0) //saldo positivo--------------------
+            if (pSaldo <= 0) throw new ExcepcionDeMonto("Monto Inválido"); //EL SALDO ES NEGATIVO O CERO
+
+            if (this.iSaldo > 0) //saldo positivo--------------------
             {
                 if (pSaldo <= this.iSaldo + this.iAcuerdo) //no se produce descubierto
                 {

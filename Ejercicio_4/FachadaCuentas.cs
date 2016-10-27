@@ -8,43 +8,78 @@ namespace Ejercicio_4
 {
     class FachadaCuentas
     {
-
+        //1 = Caja de Ahorro | 2= Cuenta Corriente
         private CuentasS iCuentas = new CuentasS();
 
-        public Cuenta IngresarACuenta(bool pTipoCuenta)
-        {
-            if (pTipoCuenta == false)         // caja de ahorro es pTipoCuenta=false
-            { return (iCuentas.CajaAhorro); }
-            else  //
-            { return (iCuentas.CuentaCorriente); }
-        }
-
-        public CuentasS MostrarCuentas
+        public CuentasS Cuenta
         {
             get { return this.iCuentas; }
         }
         
-        public void AcreditarCuenta(Cuenta pCuenta, double pSaldo)
-        {
-            pCuenta.AcreditarSaldo(pSaldo);
-        }
 
-        public Boolean DebitarCuenta(Cuenta pCuenta, double pSaldo)
+        public Cuenta MostrarCuenta(int pCuenta)
         {
-            if (pCuenta.DebitarSaldo(pSaldo))
-                return true;
+            if (pCuenta == 1)//CAJA DE AHORRO
+                return this.iCuentas.CajaAhorro;
             else
-                return false;
+                return this.iCuentas.CuentaCorriente; //CUENTA CORRIENTE
         }
 
-        public Boolean Transferir(Cuenta pCuenta1, Cuenta pCuenta2, double pSaldo)
+        public void AcreditarCuenta(int pCuenta, double pSaldo)
         {
-            if (DebitarCuenta(pCuenta1, pSaldo))
+            if (pCuenta == 1) iCuentas.CajaAhorro.AcreditarSaldo(pSaldo); //CAJA DE AHORRO
+            else iCuentas.CuentaCorriente.AcreditarSaldo(pSaldo); //CUENTA CORRIENTE
+        }
+
+        public Boolean DebitarCuenta(int pCuenta, double pSaldo)
+        {
+            bool mResultado = false;
+
+            switch (pCuenta)
             {
-                pCuenta2.AcreditarSaldo(pSaldo);
-                return true;
+                case 1://CAHA DE AHORRO
+                    {
+                        if(iCuentas.CajaAhorro.DebitarSaldo(pSaldo)) mResultado = true;
+                        break;
+                    }
+                case 2://CUENTA CORRIENTE
+                    {
+                        if(iCuentas.CuentaCorriente.DebitarSaldo(pSaldo)) mResultado = true;
+                        break;
+                    }
             }
-            else return false;
+
+            return mResultado;
+
+        }
+
+        public Boolean Transferir(int pCuenta1, double pSaldo)
+        {
+            bool mResultado = false;
+
+            switch (pCuenta1) 
+            {
+                case 1://TRASFERENCIAS DESDE CAJAHORRO A CUENTA CORRIENTE
+                    {
+                        if (DebitarCuenta(1, pSaldo))
+                        {
+                            AcreditarCuenta(2, pSaldo);
+                            mResultado = true;
+                        }
+                        break;
+                    }
+                case 2:////TRASFERENCIAS DESDE CUENTA CORRIENTE A CAJAHORRO 
+                    {
+                        if (DebitarCuenta(2, pSaldo))
+                        {
+                            AcreditarCuenta(1, pSaldo);
+                            mResultado = true;
+                        }
+                        break;
+                    }
+            }
+
+          return mResultado;            
         }
     }
 }
