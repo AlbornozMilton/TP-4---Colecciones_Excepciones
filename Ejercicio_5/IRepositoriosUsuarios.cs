@@ -6,8 +6,13 @@ using System.Threading.Tasks;
 
 namespace Ejercicio_5
 {
-    interface IRepositoriosUsuarios: IList<Usuario> //o IComaprer<>
+    interface IRepositoriosUsuarios: IComparer<Usuario>
     {
+        //public int Comparador(Usuario pUs1,Usuario pUs2)
+        //{
+        //    return;
+    
+        //}
         void Agregar(Usuario pUsuario);
         void Actualizar(Usuario pUsuario);
         void Eliminar(string pCodigo);
