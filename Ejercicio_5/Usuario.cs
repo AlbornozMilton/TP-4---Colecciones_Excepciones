@@ -19,6 +19,5 @@ namespace Ejercicio_5
         private string iCodigo { get; set; }
         private string iNombreCompleto { get; set; }
         private string iCorreoElectronico { get; set; }
-
     }
 }
