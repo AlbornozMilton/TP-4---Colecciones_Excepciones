@@ -6,19 +6,15 @@ using System.Threading.Tasks;
 
 namespace Ejercicio_5
 {
-    interface IRepositoriosUsuarios: IComparer<Usuario>
+    public interface IRepositoriosUsuarios
     {
-        //public int Comparador(Usuario pUs1,Usuario pUs2)
-        //{
-        //    return;
-    
-        //}
-        void Agregar(Usuario pUsuario);
+        
+        void AgregarUsuario(Usuario pUsuario);
         void Actualizar(Usuario pUsuario);
         void Eliminar(string pCodigo);
         IList<Usuario> ObtenerTodos();
         Usuario ObtenerPorCodigo(string pCodigo);
-        IList<Usuario> ObtenerOrdenadoPor(); //agregar parametro iComparer<>
+        IList<Usuario> ObtenerOrdenadoPor(IComparable<Usuario> pUsuario); 
         
     }
 }
