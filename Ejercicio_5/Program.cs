@@ -17,7 +17,7 @@ namespace Ejercicio_5
 
             List<Usuario> m;
 
-            Console.WriteLine("Orden Codigo");
+            Console.WriteLine("Orden por Codigo"); //ordenamiento por defecto del SortedDictionary
             m = Repositorio.ObtenerTodos().ToList();
             foreach (Usuario a in m)
             {

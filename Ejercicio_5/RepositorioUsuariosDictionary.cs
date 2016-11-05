@@ -23,13 +23,11 @@ namespace Ejercicio_5
             this.AgregarUsuario(Usuario3);
             this.AgregarUsuario(Usuario4);
             this.AgregarUsuario(Usuario5);
-        }
-
-        
+        }     
 
        public void AgregarUsuario(Usuario pUsuario)
         {
-            if (this.iRepoUsuarios.ContainsKey(pUsuario.Codigo))
+            if (this.iRepoUsuarios.ContainsKey(pUsuario.Codigo)) //si se produce la excepción, corta el flujo de ejecución
             {
                 throw new NullReferenceException("El Usuario Ya Existe");
             }
@@ -38,7 +36,7 @@ namespace Ejercicio_5
 
         public void Actualizar(Usuario pUsuario)
         {
-            if (!iRepoUsuarios.ContainsKey(pUsuario.Codigo)) //si se produce la excepción, corta el flujo de ejecución
+            if (!iRepoUsuarios.ContainsKey(pUsuario.Codigo))
             {
                 throw new NullReferenceException("El usuario No Existe");
             }

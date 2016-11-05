@@ -6,75 +6,79 @@ using System.Threading.Tasks;
 
 namespace Ejercicio_6
 {
-    class Repositorio : IRepositoriosUsuarios 
+    class RepositorioUsuariosLista : IRepositoriosUsuarios 
     {
         IList< Usuario> iRepoUsuarios = new List<Usuario>();
 
         //constructor
-        public Repositorio()
+        public RepositorioUsuariosLista()
         {
-
+            Usuario Usuario1 = new Usuario("21654", "Mauri", "hotmail");
+            Usuario Usuario2 = new Usuario("12384", "Lore", "gmail");
+            Usuario Usuario3 = new Usuario("21884", "Juan", "gmail");
+            Usuario Usuario4 = new Usuario("95614", "Milton", "yahoo");
+            Usuario Usuario5 = new Usuario("00051", "Juli", "");
+            this.AgregarUsuario(Usuario1);
+            this.AgregarUsuario(Usuario2);
+            this.AgregarUsuario(Usuario3);
+            this.AgregarUsuario(Usuario4);
+            this.AgregarUsuario(Usuario5);
         }
-
-        
 
         public void AgregarUsuario(Usuario pUsuario)
         {
-            if (!this.iRepoUsuarios.Contains(pUsuario))
+            if (this.iRepoUsuarios.Contains(pUsuario))
             {
-                this.iRepoUsuarios.Add(pUsuario);
+                throw new NullReferenceException("El Usuario Ya Existe");//si se produce la excepción, corta el flujo de ejecución
             }
-            else throw new Exception("Usuario Existente");
+            this.iRepoUsuarios.Add(pUsuario);
         }
 
         public void Actualizar(Usuario pUsuario)
         {
-            if (iRepoUsuarios.Contains(pUsuario))
+            if (!iRepoUsuarios.Contains(pUsuario)) 
             {
-                this.iRepoUsuarios.Add(pUsuario);
+                throw new NullReferenceException("El usuario No Existe");
             }
-            else throw new Exception("Usuario Inexistente");
+            this.iRepoUsuarios.Add(pUsuario);
         }
 
         public void Eliminar(string pCodigo)
         {
-            if (this.iRepoUsuarios.Contains())
+            if (ObtenerPorCodigo(pCodigo)==null)
             {
-                this.iRepoUsuarios.Remove(pCodigo);
-            }
-            else throw new Exception("Usuario Inexistente");
-        }
-
-        public IList<Usuario> ObtenerTodos()
-        {
-            IList<Usuario> mListaUsuarios = new List<Usuario>();
-            IEnumerator<KeyValuePair<string, Usuario>> mEnumerador = this.iRepoUsuarios.GetEnumerator();
-
-            while (mEnumerador.MoveNext())
-            {
-                mListaUsuarios.Add(mEnumerador.Current.Value);
+                throw new NullReferenceException("El usuario No Existe");
             }
 
-            return mListaUsuarios; //?????          
+            this.iRepoUsuarios.Remove(ObtenerPorCodigo(pCodigo));
         }
 
         public Usuario ObtenerPorCodigo(string pCodigo)
         {
-            if (this.iRepoUsuarios.ContainsKey(pCodigo)) //necesario???
+            IEnumerator<Usuario> mEnum = this.iRepoUsuarios.GetEnumerator();
+
+            while (mEnum.MoveNext())
             {
-                return this.iRepoUsuarios[pCodigo];
+                if (mEnum.Current.Codigo == pCodigo) return mEnum.Current;
             }
-            else throw new Exception("Usuario Inexistente");
+
+            throw new NullReferenceException();          
         }
 
-        //public IList<Usuario> ObtenerOrdenadosPor(IComparer<Usuario> pComparador)
-        //{
-        //    List<Usuario> mUsuarios = this.ObtenerTodos().ToList();
+        public IList<Usuario> ObtenerTodos()
+        {
+            return this.iRepoUsuarios;
+        }
 
-        //    mUsuarios.OrderBy<Usuario, string>(Func < Usuario, string > key, IComparer < string > Compare);
+        public IList<Usuario> ObtenerOrdenadoPor(IComparer<Usuario> pComparador)
+        {
+          //  List<Usuario> mLista = ObtenerTodos().ToList();
+            List<Usuario> mLista = new List<Usuario>(this.iRepoUsuarios);
 
-        //    return null;
-        //}
+            mLista.Sort(pComparador);
+
+            return mLista;
+        }
 
     }
 }

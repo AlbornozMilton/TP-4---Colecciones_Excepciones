@@ -14,7 +14,7 @@ namespace Ejercicio_6
         void Eliminar(string pCodigo);
         IList<Usuario> ObtenerTodos();
         Usuario ObtenerPorCodigo(string pCodigo);
-        IList<Usuario> ObtenerOrdenadoPor(IComparable<Usuario> pUsuario);
+        IList<Usuario> ObtenerOrdenadoPor(IComparer<Usuario> pUsuario);
 
     }
 }

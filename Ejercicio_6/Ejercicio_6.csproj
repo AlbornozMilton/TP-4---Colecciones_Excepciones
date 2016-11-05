@@ -44,6 +44,9 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="IRepositorioUsuarios.cs" />
+    <Compile Include="OrdenamientoUsuarioPorCodigo.cs" />
+    <Compile Include="OrdenamientoUsuarioPorCorreo.cs" />
+    <Compile Include="OrdenamientoUsuarioPorNombre.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="RepositorioUsuariosLista.cs" />

@@ -12,11 +12,19 @@ namespace Ejercicio_6
         private string iNombreCompleto;
         private string iCorreoElectronico;
 
+        public Usuario(string pCodigo, string pNombre, string pCorreo)
+        {
+            this.iCodigo = pCodigo;
+            this.iNombreCompleto = pNombre;
+            this.iCorreoElectronico = pCorreo;
+        }
+
         public int CompareTo(Usuario pUsuario)
         {
             return this.iCodigo.CompareTo(pUsuario.iCodigo);
         }
-        public override bool Equals(Usuario pUsuario)
+
+        public bool Equals (Usuario pUsuario)
         {
             return this.GetHashCode() == pUsuario.GetHashCode();
         }
@@ -31,5 +39,14 @@ namespace Ejercicio_6
             get { return this.iCodigo; }
         }
 
+        public string Nombre
+        {
+            get { return this.iNombreCompleto; }
+        }
+
+        public string Correo
+        {
+            get { return this.iCorreoElectronico; }
+        }
     }
 }
