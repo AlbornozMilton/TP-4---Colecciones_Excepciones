@@ -4,44 +4,41 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Ejercicio_5
+namespace Ejercicio_6
 {
-    class Repositorio :IRepositoriosUsuarios ,IComparer<Usuario>
+    class Repositorio : IRepositoriosUsuarios 
     {
-        IDictionary<String, Usuario> iRepoUsuarios = new SortedDictionary<String, Usuario>(); 
+        IList< Usuario> iRepoUsuarios = new List<Usuario>();
 
+        //constructor
         public Repositorio()
         {
-           
+
         }
 
-        ////METODO DE INTERFACE ICOMPARER----------
-        //public int Compare(Usuario pUsuario1, Usuario pUsuario2)
-        //{
-        //    return pUsuario1.CompareTo(pUsuario2);
-        //}
+        
 
         public void AgregarUsuario(Usuario pUsuario)
         {
-            if (!this.iRepoUsuarios.ContainsKey(pUsuario.Codigo))
+            if (!this.iRepoUsuarios.Contains(pUsuario))
             {
-                this.iRepoUsuarios.Add(pUsuario.Codigo, pUsuario);
+                this.iRepoUsuarios.Add(pUsuario);
             }
             else throw new Exception("Usuario Existente");
         }
 
         public void Actualizar(Usuario pUsuario)
         {
-            if (iRepoUsuarios.ContainsKey(pUsuario.Codigo))
+            if (iRepoUsuarios.Contains(pUsuario))
             {
-                this.iRepoUsuarios.Add(pUsuario.Codigo, pUsuario);
+                this.iRepoUsuarios.Add(pUsuario);
             }
             else throw new Exception("Usuario Inexistente");
         }
 
         public void Eliminar(string pCodigo)
         {
-            if (this.iRepoUsuarios.ContainsKey(pCodigo))
+            if (this.iRepoUsuarios.Contains())
             {
                 this.iRepoUsuarios.Remove(pCodigo);
             }
@@ -51,7 +48,7 @@ namespace Ejercicio_5
         public IList<Usuario> ObtenerTodos()
         {
             IList<Usuario> mListaUsuarios = new List<Usuario>();
-            IEnumerator<KeyValuePair<string,Usuario>> mEnumerador = this.iRepoUsuarios.GetEnumerator();
+            IEnumerator<KeyValuePair<string, Usuario>> mEnumerador = this.iRepoUsuarios.GetEnumerator();
 
             while (mEnumerador.MoveNext())
             {
@@ -67,20 +64,17 @@ namespace Ejercicio_5
             {
                 return this.iRepoUsuarios[pCodigo];
             }
-            else return null; 
+            else throw new Exception("Usuario Inexistente");
         }
 
-        public IList<Usuario> ObtenerOrdenadosPor(IComparer<Usuario> pComparador)
-        {
-            //IList<Usuario> mListaUsuarios = this.ObtenerTodos();
-            ////METODO DE INTERFACE ICOMPARER----------
-            // pComparador.Compare(mListaUsuarios.c, Usuario pUsuario2)
-            //  {
-            //     return pUsuario1.CompareTo(pUsuario2);
-            //  }
+        //public IList<Usuario> ObtenerOrdenadosPor(IComparer<Usuario> pComparador)
+        //{
+        //    List<Usuario> mUsuarios = this.ObtenerTodos().ToList();
 
-            return null;
-        }
+        //    mUsuarios.OrderBy<Usuario, string>(Func < Usuario, string > key, IComparer < string > Compare);
+
+        //    return null;
+        //}
 
     }
 }
