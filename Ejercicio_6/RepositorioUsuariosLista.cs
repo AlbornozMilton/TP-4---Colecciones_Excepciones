@@ -8,7 +8,8 @@ namespace Ejercicio_6
 {
     class RepositorioUsuariosLista : IRepositoriosUsuarios 
     {
-        IList< Usuario> iRepoUsuarios = new List<Usuario>();
+        IList<Usuario> iRepoUsuarios =  new List<Usuario>();
+        
 
         //constructor
         public RepositorioUsuariosLista()
@@ -72,7 +73,6 @@ namespace Ejercicio_6
 
         public IList<Usuario> ObtenerOrdenadoPor(IComparer<Usuario> pComparador)
         {
-          //  List<Usuario> mLista = ObtenerTodos().ToList();
             List<Usuario> mLista = new List<Usuario>(this.iRepoUsuarios);
 
             mLista.Sort(pComparador);

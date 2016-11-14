@@ -48,6 +48,7 @@
     <Compile Include="Evento.cs" />
     <Compile Include="Frecuencia.cs" />
     <Compile Include="IAgenda.cs" />
+    <Compile Include="IEventos.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

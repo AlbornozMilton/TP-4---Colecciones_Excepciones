@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Ejercicio_6
 {
-    public class Usuario : IComparable<Usuario>
+    public class Usuario : IComparable<Usuario>, IEquatable<Usuario>
     {
         private string iCodigo;
         private string iNombreCompleto;

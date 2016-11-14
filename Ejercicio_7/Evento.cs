@@ -6,8 +6,17 @@ using System.Threading.Tasks;
 
 namespace Ejercicio_7
 {
-    class Evento
+    class Evento:IComparable<Evento>
     {
+        //comparar eventos por titulo
+        /*  metodo Parse() - entrada: string, salida: TimeSpan
+            < fecha > "2/10/2007"
+            < hora > "1:02:03 P.M."
+            < desplazamiento > "-7:30:15"
+
+            excepciones: argument, argumentNull, format
+        */
+
         private string iTitulo;
         private TimeSpan iFechaComienzo;
         private TimeSpan iHoraComienzo;
@@ -28,14 +37,29 @@ namespace Ejercicio_7
             get { return this.iTitulo; }
         }
 
-        public DateTime FechaCreacion
+        public string FechaCreacion
         {
-            get { return this.iFechaCreacion.Date; }
+            get { return this.iFechaComienzo.ToString(); }
         }
 
-        public TimeSpan HoraCreacion
+        public string HoraCreacion
         {
-            get { return this.iFechaCreacion.TimeOfDay; }
+            get { return this.iHoraComienzo.ToString(); }
+        }
+
+        public int CompareTo(Evento pEvento)
+        {
+            return this.iTitulo.CompareTo(pEvento.iTitulo);
+        }
+
+        public bool Equals(Evento pEvento)
+        {
+            return this.GetHashCode() == pEvento.GetHashCode();
+        }
+
+        public override int GetHashCode()
+        {
+            return this.iTitulo.GetHashCode();
         }
     }
 }

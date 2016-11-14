@@ -8,64 +8,73 @@ namespace Ejercicio_7
 {
     class Agenda : IAgenda
     {
+        IDictionary<DateTime,Calendario> iCalendarios = new SortedDictionary<DateTime,Calendario>();
+        //implementacion de interfaz
+
         public void AgregarCalendario(Calendario pCalendario)
         {
-            throw new NotImplementedException();
-        }
-
-        public void AgregarEvento(Evento pEvento)
-        {
-            throw new NotImplementedException();
-        }
-
-        public void EliminarCalendario(string pCodigoCalendario)
-        {
-            throw new NotImplementedException();
-        }
-
-        public void EliminarEvento(string pCodigoEvento)
-        {
-            throw new NotImplementedException();
+            if (this.iCalendarios.ContainsKey(pCalendario.FechaCreacion))
+            {
+                throw new NullReferenceException("El Calendario Ya Existe");//si se produce la excepción, corta el flujo de ejecución
+            }
+            this.iCalendarios.Add(pCalendario.FechaCreacion,pCalendario);
         }
 
         public void ModificarCalendario(Calendario pCalendario)
         {
-            throw new NotImplementedException();
+            if (!this.iCalendarios.ContainsKey(pCalendario.FechaCreacion))
+            {
+                throw new NullReferenceException("El Calendario No Existe");
+            }
+            this.iCalendarios.Add(pCalendario.FechaCreacion, pCalendario);
         }
 
-        public void ModificarEvento(Evento pEvento)
+        public void EliminarCalendario(string pCodigoCalendario)
         {
-            throw new NotImplementedException();
-        }
+            if (!this.iCalendarios.ContainsKey(DateTime.Parse(pCodigoCalendario)))
+            {
+                throw new NullReferenceException("El Calendario No Existe");
+            }
 
-        public Calendario ObtenerCalendarioPorCodigo(Evento pEvento)
-        {
-            throw new NotImplementedException();
-        }
-
-        public IList<Calendario> ObtenerCalendariosOrdenadoPor(IComparer<Calendario> pComparadorCalendario)
-        {
-            throw new NotImplementedException();
-        }
-
-        public Evento ObtenerEventoPorCodigo(Evento pEvento)
-        {
-            throw new NotImplementedException();
-        }
-
-        public IList<Evento> ObtenerEventosOrdenadoPor(IComparer<Evento> pComparadorEvento)
-        {
-            throw new NotImplementedException();
+            this.iCalendarios.Remove(DateTime.Parse(pCodigoCalendario));
         }
 
         public IList<Calendario> ObtenerTodosCalendarios()
         {
-            throw new NotImplementedException();
+            List<Calendario> mLista = new List<Calendario>(this.iCalendarios.Values);
+
+            return mLista;
         }
 
-        public IList<Evento> ObtenerTodosEventos()
+        public Calendario ObtenerCalendarioPorCodigo(DateTime pCalendario)
         {
-            throw new NotImplementedException();
+            if (!this.iCalendarios.ContainsKey(pCalendario))
+            {
+                throw new NullReferenceException();
+            }
+
+            return this.iCalendarios[pCalendario];
+        }
+
+        public IList<Calendario> ObtenerCalendariosOrdenadoPor(IComparer<Calendario> pComparadorCalendario)
+        {
+            List < Calendario > mLista = this.ObtenerTodosCalendarios().ToList();
+
+            mLista.Sort(pComparadorCalendario);
+
+            return mLista;
+        }
+
+        public IList<Evento> ObtenerEventosDeUnCalendario(Calendario pCalendario, IComparer<Evento> pComparador)
+        {
+            //crear clase para implemetar el pComparador
+            IEnumerator<Calendario> mEnum = new List<Calendario>(this.iCalendarios.Values).GetEnumerator();
+            while (mEnum.MoveNext())
+            {
+                if (mEnum.Current.Equals(pCalendario))
+                return new List<Evento>(this.iCalendarios[pCalendario.FechaCreacion].ObtenerEventosOrdenadoPor(pComparador));
+            }
+            throw new NullReferenceException();
         }
     }
 }
