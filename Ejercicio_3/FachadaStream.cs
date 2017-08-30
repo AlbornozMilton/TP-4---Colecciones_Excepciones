@@ -23,7 +23,7 @@ namespace Ejercicio_3
 
             finally
             {
-                if (this.iStreamR != null) this.iStreamR.Close();
+               this.iStreamR.Close();
             }
         }
     }
