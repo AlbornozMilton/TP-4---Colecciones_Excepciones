@@ -10,8 +10,9 @@ namespace Ejercicio_1
     {
         public void Ejecutar()
         {
-                CapaPersistencia mCPersistencia = new CapaPersistencia();
-                mCPersistencia.Ejecutar();
+            CapaPersistencia mCPersistencia = new CapaPersistencia();//se instancia la capa N+1 = 5 "Capa Persistencia"
+
+            mCPersistencia.Ejecutar(); //metodo de la capa persistencia
         }
     }
 }

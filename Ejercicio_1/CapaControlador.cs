@@ -10,8 +10,8 @@ namespace Ejercicio_1
     {
         public void Ejecutar()
         {
-            CapaAplicacion mCApp = new CapaAplicacion();
-            mCApp.Ejecutar();
+            CapaAplicacion mCApp = new CapaAplicacion();//se instancia la capa N+1 = 3 "Capa Aplicacion"
+            mCApp.Ejecutar(); //metodo de la capa aplicacion
         }
     }
 }

@@ -8,14 +8,10 @@ namespace Ejercicio_1
 {
     class CapaPersistencia
     {
-        public CapaPersistencia()
-        {
-            throw new ErrorPuntualException();
-            
-        }
+        //se lanza la expecion creada por nosotros de nuestra clase ErrorPuntualException
         public void Ejecutar()
         {
-
+            throw new ErrorPuntualException();
         }
     }
 }

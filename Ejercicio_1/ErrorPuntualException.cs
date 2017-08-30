@@ -10,9 +10,13 @@ namespace Ejercicio_1
     {
         private DateTime iFechaHora ;
 
+        //constructor de la clase ErrorPutual que usa el contructor de la base AplicationException
+        //ademas actualiza su fecha
         public ErrorPuntualException():base("Error conexion IP: 192.168.1.1")
         {
             this.iFechaHora = DateTime.Now;
+
+            base.Source = "Capa Persistencia Source";
         }
 
         public DateTime FechaHora
