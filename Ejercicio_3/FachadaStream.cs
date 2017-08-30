@@ -14,6 +14,7 @@ namespace Ejercicio_3
         public string BuscarArchivo(string pRuta)
         {
            // C:\Csharp\Buscado.txt
+           // si se produce una excepcion sera atrapada por los catch del program
             try
             {
                 this.iStreamR = new StreamReader(@pRuta);

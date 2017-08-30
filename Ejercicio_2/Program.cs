@@ -8,6 +8,7 @@ namespace Ejercicio_2
 {
     class Program
     {
+        //Realizar units con manejo de excepciones
         static void Main(string[] args)
         {
             Console.WriteLine("Operacion de Division Entera");
@@ -41,7 +42,7 @@ namespace Ejercicio_2
                 }
                 catch (ArgumentException pE)
                 {
-                    Console.WriteLine("Los Parametros ingresados son invalido. Ambos deben ser enteros.");
+                    Console.WriteLine("Faltan ingresar datos.");
                     Console.WriteLine("Mensaje Exception Original: {0}",pE.Message);
                     Console.WriteLine("CallStack:");
                     Console.WriteLine(pE.StackTrace);

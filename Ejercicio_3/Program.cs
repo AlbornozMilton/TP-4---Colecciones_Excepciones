@@ -16,7 +16,7 @@ namespace Ejercicio_3
 
             FachadaStream iFachada = new FachadaStream();
 
-            Console.WriteLine("Ingrese ruta de archivo:");
+            Console.WriteLine("Ingrese ruta de archivo: ");
             string mRuta = Console.ReadLine();
 
             try
@@ -29,18 +29,18 @@ namespace Ejercicio_3
                 Console.WriteLine("Detalle: "+E.Message);
             }
 
-            catch (ArgumentException E)//el path es cadena vacia
+            catch (ArgumentException E)//el path es cadena vacia - falta argumento
             {
                 Console.WriteLine("Error al abrir archivo");
                 Console.WriteLine("Detalle: " + E.Message);
             }
 
             catch (UnauthorizedAccessException E)//al querer abrir una carpeta y que liste sus elementos
+            //no posee permisos de acceso
             {
                 //ejemplo: C:\Csharp
                 Console.WriteLine("Error al abrir archivo");
                 Console.WriteLine("Detalle: " + E.Message);
-
             }
 
             catch (FileNotFoundException E) //no se pude encontrar el archivo
