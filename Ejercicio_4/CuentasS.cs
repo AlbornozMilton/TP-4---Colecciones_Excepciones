@@ -23,10 +23,7 @@ namespace Ejercicio_4
 
         public Cliente Cliente
         {
-            get
-            {
-                return this.iCliente;
-            }
+            get { return this.iCliente; }
         }
 
         public Cuenta CuentaCorriente

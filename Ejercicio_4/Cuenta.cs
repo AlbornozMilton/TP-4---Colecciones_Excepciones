@@ -20,9 +20,9 @@ namespace Ejercicio_4
             this.iSaldo = 0;
 
         }
-        public Cuenta(double pSaldoInicial, double pAcuerdo)
+        public Cuenta(double pMontoInicial, double pAcuerdo)
         {
-            this.iSaldo = pSaldoInicial;
+            this.iSaldo = pMontoInicial;
             this.iAcuerdo = pAcuerdo;
         }
 
@@ -39,42 +39,34 @@ namespace Ejercicio_4
 
         //metodos-------------------------------
 
-        public void AcreditarSaldo(double pSaldo) //EL SALDO ES NEGATIVO O CERO
+        public void AcreditarSaldo(double pMonto) //EL SALDO ES NEGATIVO O CERO
         {
-            if (pSaldo < 0) throw new ExcepcionDeMonto("Monto Inválido");
-            
-            this.iSaldo += pSaldo;
+            this.iSaldo += pMonto;
         }
 
-        public bool DebitarSaldo(double pSaldo) //el metodo trabaja con iSaldo negtivo/positivo
+        //el metodo trabaja con iSaldo negtivo/positivo
+        public void DebitarSaldo(double pMonto) 
         {
-            if (pSaldo <= 0) throw new ExcepcionDeMonto("Monto Inválido"); //EL SALDO ES NEGATIVO O CERO
-
-            if (this.iSaldo > 0) //saldo positivo--------------------
+            if (this.iSaldo >= 0) //saldo positivo--------------------
             {
-                if (pSaldo <= this.iSaldo + this.iAcuerdo) //no se produce descubierto
+                if (pMonto > this.iSaldo + this.iAcuerdo)
                 {
-                    this.iSaldo -= pSaldo;
-                    return true;
+                    throw new ExcepcionDeMonto("Se produce Descubierto"); ;
                 }
-                else return false; //se produce descubierto
+                //no se produce descubierto
+                this.iSaldo -= pMonto;
             }
             else //saldo negativo---------------------------------------
             {
-                if (this.iSaldo + this.iAcuerdo > 0) //cuenta no descubierta
+                // ejemplo de this.iSaldo + this.iAcuerdo: -1000 + 2000 = 1000. 
+                // Cuando saldo + acuerdo < 0, significa que lo debitado supera el Acuerdo
+                // ejemplo: -3000 + 2000 = -1000 < 0.
+                if ((this.iSaldo -= pMonto) + this.iAcuerdo < 0)
                 {
-                    if (pSaldo <= this.iSaldo + this.iAcuerdo)
-                    //no se produce descubierto+++++++++++++
-                    {
-                        this.iSaldo -= pSaldo;
-                        return true;
-                    }
-                    else //se produce descubierto+++++++++++++
-                    {
-                        return false;
-                    }
+                    throw new ExcepcionDeMonto("Se porduce Descubierto");
                 }
-                else return false;//cuenta descubierta                     
+                //no se produce descubierto
+                this.iSaldo -= pMonto;
             }
         }
     }

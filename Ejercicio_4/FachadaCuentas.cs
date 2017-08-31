@@ -25,61 +25,52 @@ namespace Ejercicio_4
                 return this.iCuentas.CuentaCorriente; //CUENTA CORRIENTE
         }
 
-        public void AcreditarCuenta(int pCuenta, double pSaldo)
+        public void AcreditarCuenta(int pCuenta, double pMonto)
         {
-            if (pCuenta == 1) iCuentas.CajaAhorro.AcreditarSaldo(pSaldo); //CAJA DE AHORRO
-            else iCuentas.CuentaCorriente.AcreditarSaldo(pSaldo); //CUENTA CORRIENTE
+            if (pCuenta == 1) iCuentas.CajaAhorro.AcreditarSaldo(pMonto); //CAJA DE AHORRO
+            else iCuentas.CuentaCorriente.AcreditarSaldo(pMonto); //CUENTA CORRIENTE
         }
 
-        public Boolean DebitarCuenta(int pCuenta, double pSaldo)
+        public void DebitarCuenta(int pCuenta, double pMonto)
         {
-            bool mResultado = false;
+            if (pMonto <= 0) throw new ExcepcionDeMonto("Monto Inválido. El monto no puede ser cero");
+            //si la excecion es lanzada ya no siguen las lineas y la expceion es tratada
 
             switch (pCuenta)
             {
                 case 1://CAHA DE AHORRO
                     {
-                        if(iCuentas.CajaAhorro.DebitarSaldo(pSaldo)) mResultado = true;
+                        iCuentas.CajaAhorro.DebitarSaldo(pMonto);
                         break;
                     }
                 case 2://CUENTA CORRIENTE
                     {
-                        if(iCuentas.CuentaCorriente.DebitarSaldo(pSaldo)) mResultado = true;
+                        iCuentas.CuentaCorriente.DebitarSaldo(pMonto);
                         break;
                     }
             }
-
-            return mResultado;
-
         }
 
-        public Boolean Transferir(int pCuenta1, double pSaldo)
+        public void Transferir(int pCuenta1, double pMonto)
         {
-            bool mResultado = false;
+            if (pMonto <= 0) throw new ExcepcionDeMonto("Monto Inválido. El monto no puede ser cero");
+            //si la excecion es lanzada ya no siguen las lineas y la expceion es tratada
 
             switch (pCuenta1) 
             {
                 case 1://TRASFERENCIAS DESDE CAJAHORRO A CUENTA CORRIENTE
                     {
-                        if (DebitarCuenta(1, pSaldo))
-                        {
-                            AcreditarCuenta(2, pSaldo);
-                            mResultado = true;
-                        }
+                        this.DebitarCuenta(1,pMonto);
+                        this.AcreditarCuenta(2, pMonto);
                         break;
                     }
-                case 2:////TRASFERENCIAS DESDE CUENTA CORRIENTE A CAJAHORRO 
+                case 2://TRASFERENCIAS DESDE CUENTA CORRIENTE A CAJAHORRO 
                     {
-                        if (DebitarCuenta(2, pSaldo))
-                        {
-                            AcreditarCuenta(1, pSaldo);
-                            mResultado = true;
-                        }
+                        this.DebitarCuenta(2, pMonto);
+                        this.AcreditarCuenta(1, pMonto);
                         break;
                     }
             }
-
-          return mResultado;            
         }
     }
 }

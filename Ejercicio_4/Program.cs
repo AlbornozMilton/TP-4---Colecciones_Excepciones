@@ -35,17 +35,22 @@ namespace Ejercicio_4
                             Console.WriteLine("1- Caja de Ahorro");
                             Console.WriteLine("2- Cuenta Corriente ");
                             iOpcion = Convert.ToByte(Console.ReadLine());
-                            if (iOpcion == 1)
+                            try
                             {
-                                AcreditarCuenta(iFachada, 1); // 1 = caja de ahorro
+                                if (iOpcion == 1)
+                                {
+                                    AcreditarCuenta(iFachada, 1); // 1 = caja de ahorro
+                                }
+                                else if (iOpcion == 2)
+                                {
+                                    AcreditarCuenta(iFachada, 2); // 2 = cuenta corriente
+                                }
                             }
-                            else if (iOpcion == 2)
+                            catch (ExcepcionDeMonto pE)
                             {
-                                AcreditarCuenta(iFachada, 2); // 2 = cuenta corriente
-
+                                Console.WriteLine(pE.Message);
                             }
 
-                            Console.ReadKey();
                             MostrarCuentas(iFachada);
 
                             break;
@@ -57,16 +62,22 @@ namespace Ejercicio_4
                             Console.WriteLine("2- Cuenta Corriente ");
                             iOpcion = Convert.ToByte(Console.ReadLine());
 
-                            if (iOpcion == 1)
+                            try
                             {
-                                DebitarCuenta(iFachada, 1); // 1 = caja de ahorro
+                                if (iOpcion == 1)
+                                {
+                                    DebitarCuenta(iFachada, 1); // 1 = caja de ahorro
+                                }
+                                else if (iOpcion == 2)
+                                {
+                                    DebitarCuenta(iFachada, 2); // 2 =cuenta corriente
+                                }
                             }
-                            else if (iOpcion == 2)
+                            catch (ExcepcionDeMonto pE)
                             {
-                                DebitarCuenta(iFachada, 2); // 2 =cuenta corriente
+                                Console.WriteLine(pE.Message);
+                                Console.ReadKey();
                             }
-
-                            Console.ReadKey();
                             MostrarCuentas(iFachada);
 
                             break;
@@ -81,25 +92,23 @@ namespace Ejercicio_4
                             Console.WriteLine("Ingrese Monto: ");
                             double iSaldo = Convert.ToDouble(Console.ReadLine());
 
-                            if (iOpcion == 1)
+                            try
                             {
-                                
-                                if(iFachada.Transferir(1, iSaldo))
-                                Console.WriteLine("Transferencia Compelta ");
-                                else
-                                Console.WriteLine("Error. No se pudo realizar transferencia");
-
+                                if (iOpcion == 1)
+                                {
+                                    iFachada.Transferir(1, iSaldo);
+                                }
+                                else if (iOpcion == 2)
+                                {
+                                    iFachada.Transferir(2, iSaldo);
+                                }
+                                MostrarCuentas(iFachada);
                             }
-                            else if (iOpcion == 2)
+                            catch (ExcepcionDeMonto pE)
                             {
-                               
-                                if(iFachada.Transferir(2, iSaldo))
-                                    Console.WriteLine("Transferencia Compelta ");
-                                else
-                                    Console.WriteLine("Error. No se pudo realizar transferencia");
-                            }                        
-                            Console.ReadKey();
-         //                   MostrarCuentas(iFachada);
+                                Console.WriteLine(pE.Message);
+                                Console.ReadKey();
+                            }
 
                             break;
                         }
@@ -117,13 +126,10 @@ namespace Ejercicio_4
             //    Console.Clear();
             Console.WriteLine();
             Console.WriteLine("ESTADO ACTUAL");
-
             Console.WriteLine("Propietario: " + mFachada.Cuenta.Cliente.Nombre);
-
             Console.WriteLine("CAJA DE AHORRO");
             Console.WriteLine("Saldo: " + mFachada.Cuenta.CajaAhorro.Saldo);
             Console.WriteLine("Acuerdo: " + mFachada.Cuenta.CajaAhorro.Acuerdo);
-
             Console.WriteLine("CUENTA CORRIENTE");
             Console.WriteLine("Saldo: " + mFachada.Cuenta.CuentaCorriente.Saldo);
             Console.WriteLine("Acuerdo: " + mFachada.Cuenta.CuentaCorriente.Acuerdo);
@@ -139,13 +145,9 @@ namespace Ejercicio_4
                 Console.WriteLine("Saldo Acreditado");         
             }
 
-            catch (FormatException E) //EL USUARIO INGRSA CADENA DE STRING O CADENAS QUE NO SON CONVERTIBLES A DOUBLE
+            catch (FormatException) //EL USUARIO INGRESA CADENA DE STRING O CADENAS QUE NO SON CONVERTIBLES A DOUBLE
             {
                 Console.WriteLine("Ingrese Monto Correcto");
-            }
-            catch (ExcepcionDeMonto E)
-            {
-                Console.WriteLine(E.Message);
             }
         }
 
@@ -153,16 +155,11 @@ namespace Ejercicio_4
         {
             try
             {
-
                 Console.WriteLine("Ingrese monto a DEBITAR:");
                 int iSaldo = Convert.ToInt32(Console.ReadLine());
-                if (pF.DebitarCuenta(pCuenta, iSaldo))
-                {
-                    Console.WriteLine("Saldo Debitado.");
-                }
-                else { Console.WriteLine("Operación Fallida, cuenta al Descubierto o Monto no válido."); };
+                pF.DebitarCuenta(pCuenta, iSaldo);
             }
-            catch (FormatException E) //EL USUARIO INGRSA CADENA DE STRING O CADENAS QUE NO SON CONVERTIBLES A DOUBLE
+            catch (FormatException) //EL USUARIO INGRSA CADENA DE STRING O CADENAS QUE NO SON CONVERTIBLES A DOUBLE
             {
                 Console.WriteLine("Ingrese Monto Correcto");
             }

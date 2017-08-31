@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Ejercicio_4
 {
-    class ExcepcionDeMonto:Exception
+    class ExcepcionDeMonto:ApplicationException
     {
         public ExcepcionDeMonto(string pMensaje):base(pMensaje)
         {
